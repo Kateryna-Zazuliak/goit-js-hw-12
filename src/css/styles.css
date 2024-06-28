@@ -44,7 +44,7 @@
 .input-search:focus-within {
   border: 1px solid #4e75ff;
 }
-.btn-search {
+button {
   border-radius: 8px;
   padding: 8px 16px;
   width: 91px;
@@ -53,8 +53,15 @@
   color: #fff;
   font-weight: 500;
 }
+.btn-load {
+  width: 125px;
+  margin-top: 32px;
+  margin-left: 658px;
+  margin-right: 658px;
+}
 
-.btn-search:hover {
+.btn-search:hover,
+.btn-load:hover {
   background-color: #6c8cff;
 }
 
@@ -81,9 +88,17 @@
     transform: rotate(360deg);
   }
 }
-
-.hidden {
-  display: none;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 .gallery {
   margin-top: 32px;
