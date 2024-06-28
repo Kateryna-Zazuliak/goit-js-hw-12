@@ -10,6 +10,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 export let currentPage = 1;
 export let gallery = '';
+export const perPage = 15;
 
 
 refs.formElem.addEventListener('submit', async event => {
@@ -42,7 +43,7 @@ async function fetchImages() {
     showLoader();
     hideLoadBtn();
     try {
-        const arr = await getResearch(gallery, currentPage);
+        const arr = await getResearch(gallery, currentPage, perPage);
         if (arr.hits.length === 0) {
             hideLoadBtn();
             iziToast.error({
@@ -96,36 +97,6 @@ async function fetchImages() {
         refs.inputElem.value = '';
     };
 }
-
-
-refs.btnLoadMore.addEventListener('click', async () => {
-    currentPage++;
-    hideLoadBtn();
-    showLoader();
-    try {
-        const arr = await getResearch(gallery, currentPage);
-        markupResearch(arr.hits);
-        scrollElements();
-        let newGallery = new SimpleLightbox('.gallery-link', {
-            captionsData: 'alt',
-            captionPosition: 'bottom',
-            captionDelay: 250,
-        });
-        newGallery.on('error.simplelightbox', function (e) {
-            console.log(e);
-        });
-    } catch (err) {
-        console.log(err);
-        iziToast.error({
-        position: 'topRight',
-        theme: 'dark',
-        messageColor: 'white',
-        iconUrl: imageUrl,
-        backgroundColor: '#ef4040',
-            message: "Something was wrong.",
-        });
-    }
-});
 
 function scrollElements() {
     const liElem = refs.galleryElem.firstElementChild;

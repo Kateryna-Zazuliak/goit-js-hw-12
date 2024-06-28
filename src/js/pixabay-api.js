@@ -4,7 +4,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 
-export async function getResearch(gallery, page = 1) {
+export async function getResearch(gallery, currentPage, perPage) {
     const BASE_URL = 'https://pixabay.com';
     const END_POINT = '/api/';
     const params = new URLSearchParams({
@@ -13,8 +13,8 @@ export async function getResearch(gallery, page = 1) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        page,
-        per_page: 15,
+        page: currentPage,
+        per_page: perPage,
     });
     const url = `${BASE_URL}${END_POINT}?${params}`;
     try {
